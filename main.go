@@ -4,15 +4,11 @@ import (
 	"crypto/tls"
 	"flag"
 	"log"
-	"net"
 	"net/http"
 	"runtime"
-	"time"
 
 	"golang.org/x/crypto/acme/autocert"
 )
-
-var dialer = &net.Dialer{Timeout: 10 * time.Second}
 
 func main() {
 	numCPUs := runtime.NumCPU()
@@ -39,5 +35,5 @@ func main() {
 		GetCertificate: certManager.GetCertificate,
 	}
 
-	createServer(config, cfg)
+	runServer(config, cfg)
 }

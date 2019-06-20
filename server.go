@@ -6,9 +6,12 @@ import (
 	"log"
 	"net"
 	"sync"
+	"time"
 )
 
-func createServer(config *tls.Config, cfg *conf) {
+var dialer = &net.Dialer{Timeout: 10 * time.Second}
+
+func runServer(config *tls.Config, cfg *conf) {
 	l, err := tls.Listen("tcp", cfg.Listen, config)
 	if err != nil {
 		log.Fatal(err)

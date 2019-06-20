@@ -1,0 +1,19 @@
+# nano /lib/systemd/system/go-tunnel.service
+
+[Unit]
+Description=Go Tunnel
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5s
+WorkingDirectory=/home/deploy
+ExecStart=/home/deploy/go-tunnel
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=go-tunnel
+
+[Install]
+WantedBy=multi-user.target
